@@ -6,19 +6,13 @@
 namespace Zemljanoj\GoogleClient\Service;
 /**
  * Create and authorization the google client object.
- * Class \Zemljanoj\GoogleClient\Service\GetClient
+ * Class \Zemljanoj\GoogleClient\Service\AuthClient
  */
-class GetClient
+class AuthClient implements \Zemljanoj\GoogleClient\Api\Service\AuthClientInterface
 {
     const CONFIG_FILE_NAME = 'client_id.json';
 
     const CONFIG_FILE_PATH = 'etc';
-
-    /**
-     * Client factory.
-     * @var \Zemljanoj\GoogleClient\Model\ClientFactory
-     */
-    private $clientFactory;
 
     /**
      * @var \Magento\Framework\Filesystem\Io\File
@@ -29,24 +23,21 @@ class GetClient
      * GetClient constructor.
      *
      * @param \Magento\Framework\Filesystem\Io\File $ioFile
-     * @param \Zemljanoj\GoogleClient\Model\ClientFactory $clientFactory
      */
     public function __construct (
-        \Magento\Framework\Filesystem\Io\File $ioFile,
-        \Zemljanoj\GoogleClient\Model\ClientFactory $clientFactory
+        \Magento\Framework\Filesystem\Io\File $ioFile
     ) {
-        $this->clientFactory = $clientFactory;
         $this->ioFile = $ioFile;
     }
 
     /**
-     * Execute.
-     * @return \Google_Client
+     * {@inheritdoc}
      */
-    public function execute()
+    public function execute(\Google_Client $client)
     {
-        $client = $this->clientFactory->create();
-        $config = $this->ioFile->read($this->getFileName());
+        $configFileName = $this->getFileName();
+        $client->setAuthConfig($configFileName);
+        $config = $this->ioFile->read($configFileName);
         $accessToken = json_decode($config, true);
         $client->setAccessToken($accessToken);
         if ($client->isAccessTokenExpired()) {
@@ -54,8 +45,6 @@ class GetClient
             $config = json_encode($client->getAccessToken());
             $this->ioFile->write($this->getFileName(), $config);
         }
-
-        return $client;
     }
 
     /**

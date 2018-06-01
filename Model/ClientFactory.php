@@ -10,6 +10,7 @@ namespace Zemljanoj\GoogleClient\Model;
 class ClientFactory
 {
     const CLASS_NAME = 'Google_Client';
+
     /**
      * Object Manager
      *

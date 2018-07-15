@@ -7,60 +7,42 @@ namespace Zemljanoj\GoogleClient\Model;
 /**
  * Class \Zemljanoj\GoogleClient\Model\ClientFactory
  */
-class ClientFactory
+class ClientFactory implements \Zemljanoj\GoogleClient\Api\ClientFactoryInterface
 {
     const CLASS_NAME = 'Google_Client';
 
     /**
-     * Object Manager
-     *
+     * Object Manager.
      * @var \Magento\Framework\ObjectManagerInterface
      */
-    protected $_objectManager;
+    protected $objectManager;
 
     /**
-     * Client config.
-     * @var array
-     */
-    private $config;
-
-    /**
-     * Client action.
-     * @var array
-     * [<methodName1> => [<argument1>, ...], ...]
-     */
-    private $actions;
-
-    /**
-     * Construct
-     *
+     * Construct.
      * @param \Magento\Framework\ObjectManagerInterface $objectManager
      */
     public function __construct(
-        \Magento\Framework\ObjectManagerInterface $objectManager,
-        array $config,
-        array $actions
+        \Magento\Framework\ObjectManagerInterface $objectManager
     ) {
-        $this->_objectManager = $objectManager;
-        $this->config = $config;
-        $this->actions = $actions;
+        $this->objectManager = $objectManager;
     }
 
     /**
-     * Create model
-     *
-     * @param array $config
+     * Create model.
+     * @param \Zemljanoj\GoogleClient\Api\Data\ClientConfigInterface $config
      * @return \Google_Client
      */
-    public function create(array $config = [], array $actions = [])
+    public function create(\Zemljanoj\GoogleClient\Api\Data\ClientConfigInterface $config)
     {
-        $config = array_merge($this->config, $config);
-        $actions = array_merge($this->actions, $actions);
-        $model = $this->_objectManager->create(self::CLASS_NAME, $config);
-        foreach ($actions as $method => $arguments) {
-            $model->{$method}(array_values($arguments));
-        }
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $config->getCredentials());
+        $client = $this->objectManager->create(self::CLASS_NAME);
+        $client->useApplicationDefaultCredentials();
+        $client->setApplicationName('Google Sheets API');
+        $client->setScopes($config->getScopes());
+        $accessToken = $client->fetchAccessTokenWithAssertion();
+        $accessToken = $accessToken['access_token'];
+        $client->setAccessToken($accessToken);
 
-        return $model;
+        return $client;
     }
 }

@@ -21,12 +21,7 @@ interface CellInterface
     public function setValue(string $value);
 
     /**
-     * @return string
+     * @return \Zemljanoj\GoogleClient\Api\Data\Cell\AddressInterface
      */
-    public function getColumn():string;
-
-    /**
-     * @return string
-     */
-    public function getRow():string;
+    public function getAddress():\Zemljanoj\GoogleClient\Api\Data\Cell\AddressInterface;
 }

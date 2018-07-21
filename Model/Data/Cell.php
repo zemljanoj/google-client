@@ -15,27 +15,27 @@ class Cell implements \Zemljanoj\GoogleClient\Api\Data\CellInterface
     private $value;
 
     /**
-     * @var string
+     * @var \Zemljanoj\GoogleClient\Api\Data\Cell\AddressInterface
+     */
+    private $address;
+
+    /**
+     * @var \Zemljanoj\GoogleClient\Api\Data\Cell\AddressInterface
      */
     private $column;
 
     /**
-     * @var string
-     */
-    private $row;
-
-    /**
      * Cell constructor.
      *
+     * @param \Zemljanoj\GoogleClient\Api\Data\Cell\AddressInterface $column
      * @param string $value
-     * @param string $column
-     * @param string $row
      */
-    public function __construct(string $column, string $row, string $value = null)
-    {
+    public function __construct(
+        \Zemljanoj\GoogleClient\Api\Data\Cell\AddressInterface $column,
+        string $value = null
+    ) {
         $this->value = $value;
         $this->column = $column;
-        $this->row = $row;
     }
 
     /**
@@ -59,16 +59,8 @@ class Cell implements \Zemljanoj\GoogleClient\Api\Data\CellInterface
     /**
      * {@inheritdoc}
      */
-    public function getColumn():string
+    public function getAddress ():\Zemljanoj\GoogleClient\Api\Data\Cell\AddressInterface
     {
-        return $this->column;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getRow():string
-    {
-        return $this->row;
+        return $this->address;
     }
 }

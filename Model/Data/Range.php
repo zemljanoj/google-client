@@ -31,6 +31,11 @@ class Range implements \Zemljanoj\GoogleClient\Api\Data\RangeInterface
     private $endRow;
 
     /**
+     * @var string
+     */
+    private $sheetName;
+
+    /**
      * @var \Zemljanoj\GoogleClient\Api\Data\CellInterface[][]
      * [[<column>][<row>] => <cell>, ...]
      */
@@ -39,19 +44,26 @@ class Range implements \Zemljanoj\GoogleClient\Api\Data\RangeInterface
     /**
      * @param string $startColumn
      * @param string $endColumn
-     * @param string $row
+     * @param string $startRow
+     * @param string $endRow
+     * @param string $sheetName
      * @param \Zemljanoj\GoogleClient\Api\Data\CellInterface[][] $cells
      */
     public function __construct (
+        \Zemljanoj\GoogleClient\Model\Data\Range\Context $context,
         string $startColumn,
         string $endColumn,
-        string $row,
+        string $startRow,
+        string $endRow,
+        string $sheetName = '',
         array $cells = []
     ) {
         $this->startColumn = $startColumn;
         $this->endColumn = $endColumn;
-        $this->row = $row;
         $this->cells = $cells;
+        $this->startRow = $startRow;
+        $this->endRow = $endRow;
+        $this->sheetName = $sheetName;
     }
 
     /**
@@ -85,8 +97,20 @@ class Range implements \Zemljanoj\GoogleClient\Api\Data\RangeInterface
     {
         return $this->endRow;
     }
-    // getCell
-    // setCell
-    // getRange
-    // sheet
+
+    /**
+     * @return \Zemljanoj\GoogleClient\Api\Data\CellInterface[][]
+     */
+    public function getCells ():array
+    {
+        return $this->cells;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSheetName ():string
+    {
+        return $this->sheetName;
+    }
 }

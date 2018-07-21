@@ -9,4 +9,13 @@ namespace Zemljanoj\GoogleClient\Api\Data;
  */
 interface RangeInterface
 {
+    /**
+     * @return \Zemljanoj\GoogleClient\Api\Data\Range\AddressInterface
+     */
+    public function getAddress ():\Zemljanoj\GoogleClient\Api\Data\Range\AddressInterface;
+
+    /**
+     * @return \Zemljanoj\GoogleClient\Api\Data\CellInterface[][]
+     */
+    public function getCells ():array;
 }

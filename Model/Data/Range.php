@@ -4,6 +4,7 @@
  * @author Andrey Inyagin <zemljanoj.i@gmail.com>
  */
 namespace Zemljanoj\GoogleClient\Model\Data;
+use Zemljanoj\GoogleClient\Api\Data\Range\AddressInterface;
 
 /**
  * Class \Zemljanoj\GoogleClient\Model\Data\Range
@@ -11,29 +12,9 @@ namespace Zemljanoj\GoogleClient\Model\Data;
 class Range implements \Zemljanoj\GoogleClient\Api\Data\RangeInterface
 {
     /**
-     * @var string
+     * @var \Zemljanoj\GoogleClient\Api\Data\Range\AddressInterface
      */
-    private $startColumn;
-
-    /**
-     * @var string
-     */
-    private $endColumn;
-
-    /**
-     * @var string
-     */
-    private $startRow;
-
-    /**
-     * @var string
-     */
-    private $endRow;
-
-    /**
-     * @var string
-     */
-    private $sheetName;
+    private $address;
 
     /**
      * @var \Zemljanoj\GoogleClient\Api\Data\CellInterface[][]
@@ -42,75 +23,34 @@ class Range implements \Zemljanoj\GoogleClient\Api\Data\RangeInterface
     private $cells;
 
     /**
-     * @param string $startColumn
-     * @param string $endColumn
-     * @param string $startRow
-     * @param string $endRow
-     * @param string $sheetName
-     * @param \Zemljanoj\GoogleClient\Api\Data\CellInterface[][] $cells
+     * Range constructor.
+     *
+     * @param \Zemljanoj\GoogleClient\Model\Data\Range\Context $context
+     * @param \Zemljanoj\GoogleClient\Api\Data\Range\AddressInterface $address
+     * @param array $cells
      */
     public function __construct (
         \Zemljanoj\GoogleClient\Model\Data\Range\Context $context,
-        string $startColumn,
-        string $endColumn,
-        string $startRow,
-        string $endRow,
-        string $sheetName = '',
+        \Zemljanoj\GoogleClient\Api\Data\Range\AddressInterface $address,
         array $cells = []
     ) {
-        $this->startColumn = $startColumn;
-        $this->endColumn = $endColumn;
+        $this->address = $address;
         $this->cells = $cells;
-        $this->startRow = $startRow;
-        $this->endRow = $endRow;
-        $this->sheetName = $sheetName;
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
-    public function getStartColumn():string
+    public function getAddress ():\Zemljanoj\GoogleClient\Api\Data\Range\AddressInterface
     {
-        return $this->startColumn;
+        return $this->address;
     }
 
     /**
-     * @return string
-     */
-    public function getEndColumn():string
-    {
-        return $this->endColumn;
-    }
-
-    /**
-     * @return string
-     */
-    public function getStartRow():string
-    {
-        return $this->startRow;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEndRow():string
-    {
-        return $this->endRow;
-    }
-
-    /**
-     * @return \Zemljanoj\GoogleClient\Api\Data\CellInterface[][]
+     * {@inheritdoc}
      */
     public function getCells ():array
     {
         return $this->cells;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSheetName ():string
-    {
-        return $this->sheetName;
     }
 }

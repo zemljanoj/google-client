@@ -7,6 +7,7 @@
     <preference for="Zemljanoj\GoogleClient\Api\Data\ClientConfigInterface" type="Zemljanoj\GoogleClient\Model\Data\ClientConfig" />
     <preference for="Zemljanoj\GoogleClient\Api\Data\CellInterface" type="Zemljanoj\GoogleClient\Model\Data\Cell" />
     <preference for="Zemljanoj\GoogleClient\Api\Data\Cell\AddressInterface" type="Zemljanoj\GoogleClient\Model\Data\Cell\Address" />
+    <preference for="Zemljanoj\GoogleClient\Api\Data\Cell\AddressFactoryInterface" type="Zemljanoj\GoogleClient\Model\Data\Cell\AddressFactoryInterface" />
     <preference for="Zemljanoj\GoogleClient\Api\Data\Range\AddressInterface" type="Zemljanoj\GoogleClient\Model\Data\Range\Address" />
     <preference for="Zemljanoj\GoogleClient\Api\Data\RangeInterface" type="Zemljanoj\GoogleClient\Model\Data\Range" />
     <preference for="Zemljanoj\GoogleClient\Api\ClientFactoryInterface" type="Zemljanoj\GoogleClient\Model\ClientFactory" />

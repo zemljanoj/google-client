@@ -20,22 +20,19 @@ class Range implements \Zemljanoj\GoogleClient\Api\Data\RangeInterface
      * @var \Zemljanoj\GoogleClient\Api\Data\CellInterface[][]
      * [[<column>][<row>] => <cell>, ...]
      */
-    private $cells;
+    private $cells = [];
 
     /**
      * Range constructor.
      *
      * @param \Zemljanoj\GoogleClient\Model\Data\Range\Context $context
      * @param \Zemljanoj\GoogleClient\Api\Data\Range\AddressInterface $address
-     * @param array $cells
      */
     public function __construct (
         \Zemljanoj\GoogleClient\Model\Data\Range\Context $context,
-        \Zemljanoj\GoogleClient\Api\Data\Range\AddressInterface $address,
-        array $cells = []
+        \Zemljanoj\GoogleClient\Api\Data\Range\AddressInterface $address
     ) {
         $this->address = $address;
-        $this->cells = $cells;
     }
 
     /**

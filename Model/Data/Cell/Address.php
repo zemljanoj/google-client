@@ -3,10 +3,10 @@
  * Copyright (c) 2018.
  * @author Andrey Inyagin <zemljanoj.i@gmail.com>
  */
-namespace Zemljanoj\GoogleClient\Model\Data\Range;
+namespace Zemljanoj\GoogleClient\Model\Data\Cell;
 
 /**
- * Class \Zemljanoj\GoogleClient\Model\Data\Range\Address
+ * Class \Zemljanoj\GoogleClient\Model\Data\Cell\Address
  */
 class Address implements \Zemljanoj\GoogleClient\Api\Data\Cell\AddressInterface
 {
@@ -33,7 +33,7 @@ class Address implements \Zemljanoj\GoogleClient\Api\Data\Cell\AddressInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getColumnName ():string
     {
@@ -41,7 +41,7 @@ class Address implements \Zemljanoj\GoogleClient\Api\Data\Cell\AddressInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getRowName ():string
     {

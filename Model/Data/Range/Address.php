@@ -55,7 +55,7 @@ class Address implements \Zemljanoj\GoogleClient\Api\Data\Range\AddressInterface
      */
     public function getEndAddress ():\Zemljanoj\GoogleClient\Api\Data\Cell\AddressInterface
     {
-        $this->endAddress;
+        return $this->endAddress;
     }
 
     /**

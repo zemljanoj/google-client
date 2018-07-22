@@ -7,7 +7,7 @@ namespace Zemljanoj\GoogleClient\Model\Service;
 /**
  * Class \Zemljanoj\GoogleClient\Model\Service\PullRangeService
  */
-class PullRangeService
+class PullRangeService implements \Zemljanoj\GoogleClient\Api\Service\PullRangeServiceInterface
 {
     /**
      * @var \Zemljanoj\GoogleClient\Api\ClientFactoryInterface
@@ -58,16 +58,13 @@ class PullRangeService
     }
 
     /**
-     * @param \Zemljanoj\GoogleClient\Api\Data\ClientConfigInterface $clientConfig
-     * @param string $spreadsheetId
-     * @param string $range
-     * @return \Zemljanoj\GoogleClient\Api\Data\RangeInterface
+     * {@inheritdoc}
      */
     public function execute(
         \Zemljanoj\GoogleClient\Api\Data\ClientConfigInterface $clientConfig,
         string $spreadsheetId,
         string $address
-    ) {
+    ):\Zemljanoj\GoogleClient\Api\Data\RangeInterface {
         $client = $this->clientFactory->create($clientConfig);
         $sheetService = $this->sheetServiceFactory->create($client);
         $rangeValues = $sheetService->spreadsheets_values->get($spreadsheetId, $address);

@@ -15,4 +15,5 @@
     <preference for="Zemljanoj\GoogleClient\Api\Data\RangeFactoryInterface" type="Zemljanoj\GoogleClient\Model\Data\RangeFactory" />
     <preference for="Zemljanoj\GoogleClient\Api\ClientFactoryInterface" type="Zemljanoj\GoogleClient\Model\ClientFactory" />
     <preference for="Zemljanoj\GoogleClient\Api\SheetServiceFactoryInterface" type="Zemljanoj\GoogleClient\Model\SheetServiceFactory" />
+    <preference for="\Zemljanoj\GoogleClient\Api\Service\PullRangeServiceInterface" type="\Zemljanoj\GoogleClient\Model\Service\PullRangeService" />
 </config>

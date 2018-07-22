@@ -50,4 +50,14 @@ class Range implements \Zemljanoj\GoogleClient\Api\Data\RangeInterface
     {
         return $this->cells;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setCell (\Zemljanoj\GoogleClient\Api\Data\CellInterface $cell)
+    : \Zemljanoj\GoogleClient\Api\Data\RangeInterface {
+        $this->cells[$cell->getAddress()->getColumnName()][$cell->getAddress()->getRowName()] = $cell;
+
+        return $this;
+    }
 }

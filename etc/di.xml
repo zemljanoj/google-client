@@ -6,10 +6,13 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Zemljanoj\GoogleClient\Api\Data\ClientConfigInterface" type="Zemljanoj\GoogleClient\Model\Data\ClientConfig" />
     <preference for="Zemljanoj\GoogleClient\Api\Data\CellInterface" type="Zemljanoj\GoogleClient\Model\Data\Cell" />
+    <preference for="Zemljanoj\GoogleClient\Api\Data\CellFactoryInterface" type="Zemljanoj\GoogleClient\Model\Data\CellFactory" />
     <preference for="Zemljanoj\GoogleClient\Api\Data\Cell\AddressInterface" type="Zemljanoj\GoogleClient\Model\Data\Cell\Address" />
-    <preference for="Zemljanoj\GoogleClient\Api\Data\Cell\AddressFactoryInterface" type="Zemljanoj\GoogleClient\Model\Data\Cell\AddressFactoryInterface" />
+    <preference for="Zemljanoj\GoogleClient\Api\Data\Cell\AddressFactoryInterface" type="Zemljanoj\GoogleClient\Model\Data\Cell\AddressFactory" />
     <preference for="Zemljanoj\GoogleClient\Api\Data\Range\AddressInterface" type="Zemljanoj\GoogleClient\Model\Data\Range\Address" />
+    <preference for="Zemljanoj\GoogleClient\Api\Data\Range\AddressFactoryInterface" type="Zemljanoj\GoogleClient\Model\Data\Range\AddressFactory" />
     <preference for="Zemljanoj\GoogleClient\Api\Data\RangeInterface" type="Zemljanoj\GoogleClient\Model\Data\Range" />
+    <preference for="Zemljanoj\GoogleClient\Api\Data\RangeFactoryInterface" type="Zemljanoj\GoogleClient\Model\Data\RangeFactory" />
     <preference for="Zemljanoj\GoogleClient\Api\ClientFactoryInterface" type="Zemljanoj\GoogleClient\Model\ClientFactory" />
-    <preference for="Zemljanoj\GoogleClient\Api\CellDataFactoryInterface" type="Zemljanoj\GoogleClient\Model\CellDataFactory" />
+    <preference for="Zemljanoj\GoogleClient\Api\SheetServiceFactoryInterface" type="Zemljanoj\GoogleClient\Model\SheetServiceFactory" />
 </config>

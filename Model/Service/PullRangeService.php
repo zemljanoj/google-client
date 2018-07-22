@@ -30,23 +30,31 @@ class PullRangeService
     private $rangeFactory;
 
     /**
+     * @var \Zemljanoj\GoogleClient\Model\Service\Range\Values2CellsService
+     */
+    private $values2CellsService;
+
+    /**
      * PullRangeService constructor.
      *
      * @param \Zemljanoj\GoogleClient\Api\ClientFactoryInterface $clientFactory
      * @param \Zemljanoj\GoogleClient\Api\SheetServiceFactoryInterface $sheetServiceFactory
      * @param \Zemljanoj\GoogleClient\Api\Data\RangeFactoryInterface $rangeFactory
      * @param \Zemljanoj\GoogleClient\Model\Service\Range\Address\String2ObjectService $str2ObjService
+     * @param \Zemljanoj\GoogleClient\Model\Service\Range\Values2CellsService $values2CellsService
      */
     public function __construct (
         \Zemljanoj\GoogleClient\Api\ClientFactoryInterface $clientFactory,
         \Zemljanoj\GoogleClient\Api\SheetServiceFactoryInterface $sheetServiceFactory,
         \Zemljanoj\GoogleClient\Api\Data\RangeFactoryInterface $rangeFactory,
-        \Zemljanoj\GoogleClient\Model\Service\Range\Address\String2ObjectService $str2ObjService
+        \Zemljanoj\GoogleClient\Model\Service\Range\Address\String2ObjectService $str2ObjService,
+        \Zemljanoj\GoogleClient\Model\Service\Range\Values2CellsService $values2CellsService
     ) {
         $this->clientFactory = $clientFactory;
         $this->sheetServiceFactory = $sheetServiceFactory;
         $this->str2ObjService = $str2ObjService;
         $this->rangeFactory = $rangeFactory;
+        $this->values2CellsService = $values2CellsService;
     }
 
     /**
@@ -65,11 +73,7 @@ class PullRangeService
         $rangeValues = $sheetService->spreadsheets_values->get($spreadsheetId, $address);
         $rangeAddress = $this->str2ObjService->execute($address);
         $range = $this->rangeFactory->create($rangeAddress);
-        foreach ($rangeValues as $rowNumber => $row) {
-            foreach ($row as $columnNumber => $cellValue) {
-                // @todo
-            }
-        }
+        $range = $this->values2CellsService->execute($range, $rangeValues->getValues());
 
         return $range;
     }

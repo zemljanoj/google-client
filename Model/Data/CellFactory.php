@@ -5,9 +5,9 @@
  */
 namespace Zemljanoj\GoogleClient\Model\Data;
 /**
- * Class \Zemljanoj\GoogleClient\Model\Data\RangeFactory
+ * Class \Zemljanoj\GoogleClient\Model\Data\CellFactory
  */
-class RangeFactory implements \Zemljanoj\GoogleClient\Api\Data\RangeFactoryInterface
+class CellFactory implements \Zemljanoj\GoogleClient\Api\Data\CellFactoryInterface
 {
     /**
      * Object Manager instance
@@ -31,7 +31,7 @@ class RangeFactory implements \Zemljanoj\GoogleClient\Api\Data\RangeFactoryInter
      */
     public function __construct(
         \Magento\Framework\ObjectManagerInterface $objectManager,
-        $instanceName = '\\Zemljanoj\\GoogleClient\\Api\\Data\\RangeInterface'
+        $instanceName = '\\Zemljanoj\\GoogleClient\\Api\\Data\\CellInterface'
     ) {
         $this->_objectManager = $objectManager;
         $this->_instanceName = $instanceName;
@@ -41,8 +41,8 @@ class RangeFactory implements \Zemljanoj\GoogleClient\Api\Data\RangeFactoryInter
      * {@inheritdoc}
      */
     public function create(
-        \Zemljanoj\GoogleClient\Api\Data\Range\AddressInterface $address
-    ):\Zemljanoj\GoogleClient\Api\Data\RangeInterface {
+        \Zemljanoj\GoogleClient\Api\Data\Cell\AddressInterface $address
+    ):\Zemljanoj\GoogleClient\Api\Data\CellInterface {
         return $this->_objectManager->create($this->_instanceName, ['address' => $address]);
     }
 }

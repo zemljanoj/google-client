@@ -18,4 +18,10 @@ interface RangeInterface
      * @return \Zemljanoj\GoogleClient\Api\Data\CellInterface[][]
      */
     public function getCells ():array;
+
+    /**
+     * @param \Zemljanoj\GoogleClient\Api\Data\CellInterface $cell
+     * @return \Zemljanoj\GoogleClient\Api\Data\RangeInterface
+     */
+    public function setCell (\Zemljanoj\GoogleClient\Api\Data\CellInterface $cell):\Zemljanoj\GoogleClient\Api\Data\RangeInterface;
 }

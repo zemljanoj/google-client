@@ -23,6 +23,21 @@ class Range implements \Zemljanoj\GoogleClient\Api\Data\RangeInterface
     private $cells = [];
 
     /**
+     * @var \Zemljanoj\GoogleClient\Model\Service\Range\CheckAddressService
+     */
+    private $checkAddressService;
+
+    /**
+     * @var \Zemljanoj\GoogleClient\Api\Data\CellFactoryInterface
+     */
+    private $cellFactory;
+
+    /**
+     * @var \Zemljanoj\GoogleClient\Api\Data\Cell\AddressFactoryInterface
+     */
+    private $cellAddressFactory;
+
+    /**
      * Range constructor.
      *
      * @param \Zemljanoj\GoogleClient\Model\Data\Range\Context $context
@@ -33,7 +48,12 @@ class Range implements \Zemljanoj\GoogleClient\Api\Data\RangeInterface
         \Zemljanoj\GoogleClient\Api\Data\Range\AddressInterface $address
     ) {
         $this->address = $address;
+        $this->context = $context;
+        $this->checkAddressService = $context->getCheckEndRowNumberService();
+        $this->cellFactory = $context->getCellFactory();
+        $this->cellAddressFactory = $context->getCellAddressFactory();
     }
+
 
     /**
      * {@inheritdoc}
@@ -54,10 +74,29 @@ class Range implements \Zemljanoj\GoogleClient\Api\Data\RangeInterface
     /**
      * {@inheritdoc}
      */
-    public function setCell (\Zemljanoj\GoogleClient\Api\Data\CellInterface $cell)
-    : \Zemljanoj\GoogleClient\Api\Data\RangeInterface {
+    public function setCell (
+        \Zemljanoj\GoogleClient\Api\Data\CellInterface $cell
+    ):\Zemljanoj\GoogleClient\Api\Data\RangeInterface
+    {
         $this->cells[$cell->getAddress()->getColumnName()][$cell->getAddress()->getRowName()] = $cell;
+        $address = $this->checkAddressService->execute($this->address, $cell);
+        $this->address = $address;
 
         return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCell (string $columnName, string $rowName
+    ):\Zemljanoj\GoogleClient\Api\Data\CellInterface
+    {
+        if (!isset($this->cells[$columnName][$rowName])) {
+            $cellAddress = $this->cellAddressFactory->create($columnName, $rowName);
+            $cell = $this->cellFactory->create($cellAddress);
+            $this->setCell($cell);
+        }
+
+        return $this->cells[$columnName][$rowName];
     }
 }

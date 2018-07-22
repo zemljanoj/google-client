@@ -18,4 +18,9 @@ interface AddressInterface
      * @return string
      */
     public function getRowName():string;
+
+    /**
+     * @return string
+     */
+    public function __toString():string;
 }

@@ -70,7 +70,7 @@ class PullRangeService implements \Zemljanoj\GoogleClient\Api\Service\PullRangeS
         $rangeValues = $sheetService->spreadsheets_values->get($spreadsheetId, $address);
         $rangeAddress = $this->str2ObjService->execute($address);
         $range = $this->rangeFactory->create($rangeAddress);
-        $range = $this->values2CellsService->execute($range, $rangeValues->getValues());
+        $range = $this->values2CellsService->execute($range, $rangeValues);
 
         return $range;
     }

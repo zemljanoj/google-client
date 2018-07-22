@@ -23,4 +23,9 @@ interface AddressInterface
      * @return string
      */
     public function getSheetName():string;
+
+    /**
+     * @return string
+     */
+    public function __toString():string;
 }

@@ -47,4 +47,12 @@ class Address implements \Zemljanoj\GoogleClient\Api\Data\Cell\AddressInterface
     {
         return $this->rowName;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString ():string
+    {
+        return $this->getColumnName() . $this->getRowName();
+    }
 }

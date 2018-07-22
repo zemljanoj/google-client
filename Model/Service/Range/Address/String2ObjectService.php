@@ -40,6 +40,9 @@ class String2ObjectService
     public function execute(string $value)
     {
         list($sheetName, $startColumn, $endColumn, $startRow, $endRow) = $this->parseValue($value);
+        if ($startRow === '') {
+            $startRow = 1;
+        }
         $startAddress = $this->cellAddressFactory->create($startColumn, $startRow);
         $endAddress = $this->cellAddressFactory->create($endColumn, $endRow);
         $rangeAddress = $this->rangeAddressFactory->create($startAddress, $endAddress, $sheetName);

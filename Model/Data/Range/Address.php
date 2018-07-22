@@ -65,4 +65,19 @@ class Address implements \Zemljanoj\GoogleClient\Api\Data\Range\AddressInterface
     {
         return $this->sheetName;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString ():string
+    {
+        $address = '';
+        $sheetName = $this->getSheetName();
+        if ($sheetName !== '') {
+            $address .= $sheetName . '!';
+        }
+        $address .= $this->getStartAddress() . ":" . $this->getEndAddress();
+
+        return $address;
+    }
 }

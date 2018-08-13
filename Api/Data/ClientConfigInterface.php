@@ -36,6 +36,7 @@ interface ClientConfigInterface
      * @see https://console.developers.google.com/apis/credentials
      * use service credential
      * @param array $scopes
+     * @return $this
      */
     public function setScopes(array $scopes);
 }

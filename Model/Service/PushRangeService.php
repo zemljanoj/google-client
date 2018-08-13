@@ -30,9 +30,6 @@ class PushRangeService implements \Zemljanoj\GoogleClient\Api\Service\PushRangeS
      * @param \Zemljanoj\GoogleClient\Model\Service\Range\Cells2ValuesService $cells2ValuesService
      * @param \Zemljanoj\GoogleClient\Api\ClientFactoryInterface $clientFactory
      * @param \Zemljanoj\GoogleClient\Api\SheetServiceFactoryInterface $sheetServiceFactory
-     * @param \Zemljanoj\GoogleClient\Api\Data\RangeFactoryInterface $rangeFactory
-     * @param \Zemljanoj\GoogleClient\Model\Service\Range\Address\String2ObjectService $str2ObjService
-     * @param \Zemljanoj\GoogleClient\Model\Service\Range\Values2CellsService $values2CellsService
      */
     public function __construct (
         \Zemljanoj\GoogleClient\Model\Service\Range\Cells2ValuesService $cells2ValuesService,

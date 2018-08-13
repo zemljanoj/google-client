@@ -23,7 +23,9 @@ interface RangeInterface
      * @param \Zemljanoj\GoogleClient\Api\Data\CellInterface $cell
      * @return \Zemljanoj\GoogleClient\Api\Data\RangeInterface
      */
-    public function setCell (\Zemljanoj\GoogleClient\Api\Data\CellInterface $cell):\Zemljanoj\GoogleClient\Api\Data\RangeInterface;
+    public function setCell (
+        \Zemljanoj\GoogleClient\Api\Data\CellInterface $cell
+    ): \Zemljanoj\GoogleClient\Api\Data\RangeInterface;
 
     /**
      * @param string $columnName
@@ -31,4 +33,25 @@ interface RangeInterface
      * @return \Zemljanoj\GoogleClient\Api\Data\CellInterface
      */
     public function getCell (string $columnName, string $rowName):\Zemljanoj\GoogleClient\Api\Data\CellInterface;
+
+    /**
+     * @return \Zemljanoj\GoogleClient\Api\Data\RowInterface[]
+     */
+    public function getRows(): array;
+
+    /**
+     * @param string $rowName
+     * @return \Zemljanoj\GoogleClient\Api\Data\RowInterface
+     */
+    public function getRow(string $rowName): \Zemljanoj\GoogleClient\Api\Data\RowInterface;
+
+    /**
+     * @param \Zemljanoj\GoogleClient\Api\Data\RowInterface $row
+     * @param string $rowName
+     * @return \Zemljanoj\GoogleClient\Api\Data\RangeInterface
+     */
+    public function setRow(
+        \Zemljanoj\GoogleClient\Api\Data\RowInterface $row,
+        string $rowName
+    ): \Zemljanoj\GoogleClient\Api\Data\RangeInterface;
 }

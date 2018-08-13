@@ -35,7 +35,7 @@ class Cells2ValuesService
     private $valRangeServFactory;
 
     /**
-     * Values2CellsService constructor.
+     * Values2RangeService constructor.
      *
      * @param \Zemljanoj\GoogleClient\Api\ValueRangeServiceFactoryInterface $valRangeServFactory
      * @param \Zemljanoj\GoogleClient\Model\Service\Address\Number2LettersService $number2LetterService

@@ -4,7 +4,6 @@
  * @author Andrey Inyagin <zemljanoj.i@gmail.com>
  */
 namespace Zemljanoj\GoogleClient\Model\Data;
-use Zemljanoj\GoogleClient\Api\Data\Range\AddressInterface;
 
 /**
  * Class \Zemljanoj\GoogleClient\Model\Data\Range
@@ -21,6 +20,11 @@ class Range implements \Zemljanoj\GoogleClient\Api\Data\RangeInterface
      * [[<column>][<row>] => <cell>, ...]
      */
     private $cells = [];
+
+    /**
+     * @var array \Zemljanoj\GoogleClient\Api\Data\RowInterface[]
+     */
+    private $rows = [];
 
     /**
      * @var \Zemljanoj\GoogleClient\Model\Service\Range\CheckAddressService
@@ -98,5 +102,33 @@ class Range implements \Zemljanoj\GoogleClient\Api\Data\RangeInterface
         }
 
         return $this->cells[$columnName][$rowName];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRows (): array
+    {
+        return $this->rows;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRow (string $rangeName): \Zemljanoj\GoogleClient\Api\Data\RowInterface
+    {
+        return $this->rows[$rangeName];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setRow (
+        \Zemljanoj\GoogleClient\Api\Data\RowInterface $range,
+        string $rangeName
+    ): \Zemljanoj\GoogleClient\Api\Data\RangeInterface {
+        $this->rows[$rangeName] = $range;
+
+        return $this;
     }
 }

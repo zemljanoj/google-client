@@ -12,7 +12,7 @@ class Cell implements \Zemljanoj\GoogleClient\Api\Data\CellInterface
     /**
      * @var string
      */
-    private $value;
+    private $value = '';
 
     /**
      * @var \Zemljanoj\GoogleClient\Api\Data\Cell\AddressInterface
@@ -27,7 +27,7 @@ class Cell implements \Zemljanoj\GoogleClient\Api\Data\CellInterface
      */
     public function __construct(
         \Zemljanoj\GoogleClient\Api\Data\Cell\AddressInterface $address,
-        string $value = null
+        string $value = ''
     ) {
         $this->value = $value;
         $this->address = $address;

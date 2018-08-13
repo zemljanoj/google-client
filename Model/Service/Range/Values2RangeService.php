@@ -5,9 +5,9 @@
  */
 namespace Zemljanoj\GoogleClient\Model\Service\Range;
 /**
- * Class \Zemljanoj\GoogleClient\Model\Service\Range\Values2CellsService
+ * Class \Zemljanoj\GoogleClient\Model\Service\Range\Values2RangeService
  */
-class Values2CellsService
+class Values2RangeService
 {
     /**
      * @var \Zemljanoj\GoogleClient\Model\Service\Address\Number2LettersService
@@ -30,14 +30,21 @@ class Values2CellsService
     private $addressFactory;
 
     /**
-     * Values2CellsService constructor.
+     * @var \Zemljanoj\GoogleClient\Model\Data\RowFactory
+     */
+    private $rowFactory;
+
+    /**
+     * Values2RangeService constructor.
      *
+     * @param \Zemljanoj\GoogleClient\Model\Data\RowFactory $rowFactory
      * @param \Zemljanoj\GoogleClient\Model\Service\Address\Number2LettersService $number2LetterService
      * @param \Zemljanoj\GoogleClient\Model\Service\Address\Letters2NumberService $letter2NumberService
      * @param \Zemljanoj\GoogleClient\Api\Data\CellFactoryInterface $cellFactory
      * @param \Zemljanoj\GoogleClient\Api\Data\Cell\AddressFactoryInterface $addressFactory
      */
     public function __construct (
+        \Zemljanoj\GoogleClient\Model\Data\RowFactory $rowFactory,
         \Zemljanoj\GoogleClient\Model\Service\Address\Number2LettersService $number2LetterService,
         \Zemljanoj\GoogleClient\Model\Service\Address\Letters2NumberService $letter2NumberService,
         \Zemljanoj\GoogleClient\Api\Data\CellFactoryInterface $cellFactory,
@@ -47,6 +54,7 @@ class Values2CellsService
         $this->letter2NumberService = $letter2NumberService;
         $this->cellFactory = $cellFactory;
         $this->addressFactory = $addressFactory;
+        $this->rowFactory = $rowFactory;
     }
 
     /**
@@ -70,6 +78,14 @@ class Values2CellsService
                 $cell = $this->cellFactory->create($address);
                 $cell->setValue($cellValue);
                 $range->setCell($cell);
+
+                try {
+                    $row = $range->getRow($absoluteRowNumber);
+                } catch (\Exception $exception) {
+                    $row = $this->rowFactory->create($absoluteRowNumber);
+                    $range->setRow($row, $row->getName());
+                }
+                $row->setCell($cell, $cell->getAddress()->getColumnName());
             }
         }
 

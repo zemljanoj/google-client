@@ -13,6 +13,7 @@
     <preference for="Zemljanoj\GoogleClient\Api\Data\Range\AddressFactoryInterface" type="Zemljanoj\GoogleClient\Model\Data\Range\AddressFactory" />
     <preference for="Zemljanoj\GoogleClient\Api\Data\RangeInterface" type="Zemljanoj\GoogleClient\Model\Data\Range" />
     <preference for="Zemljanoj\GoogleClient\Api\Data\RangeFactoryInterface" type="Zemljanoj\GoogleClient\Model\Data\RangeFactory" />
+    <preference for="Zemljanoj\GoogleClient\Api\Data\RowInterface" type="Zemljanoj\GoogleClient\Model\Data\Row" />
     <preference for="Zemljanoj\GoogleClient\Api\ClientFactoryInterface" type="Zemljanoj\GoogleClient\Model\ClientFactory" />
     <preference for="Zemljanoj\GoogleClient\Api\SheetServiceFactoryInterface" type="Zemljanoj\GoogleClient\Model\SheetServiceFactory" />
     <preference for="Zemljanoj\GoogleClient\Api\ValueRangeServiceFactoryInterface" type="Zemljanoj\GoogleClient\Model\ValueRangeServiceFactory" />

@@ -33,9 +33,11 @@ class Letters2NumberService
     {
         $number = 0;
         $letters = preg_split('#(?<!^)(?!$)#u', $letters);
-        foreach ($letters as $index => $symbol) {
+        $index = 0;
+        while ($symbol = array_pop($letters)) {
             $digit = $this->getMatchService->execute($symbol, \Zemljanoj\GoogleClient\Model\Service\Address\GetMatchService::SYMBOL_TO_DIGIT);
             $number += $digit * pow(26, $index);
+            $index++;
         }
 
         return $number;

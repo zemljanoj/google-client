@@ -32,4 +32,11 @@ interface RowInterface
      * @return \Zemljanoj\GoogleClient\Api\Data\CellInterface
      */
     public function getCell (string $columnName):\Zemljanoj\GoogleClient\Api\Data\CellInterface;
+
+    /**
+     * @param string $value
+     * @return \Zemljanoj\GoogleClient\Api\Data\CellInterface
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function getCellByValue(string $value):\Zemljanoj\GoogleClient\Api\Data\CellInterface;
 }

@@ -89,4 +89,20 @@ class Row implements \Zemljanoj\GoogleClient\Api\Data\RowInterface
 
         return $this->cells[$columnName];
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCellByValue(string $value):\Zemljanoj\GoogleClient\Api\Data\CellInterface
+    {
+        /** @var \Zemljanoj\GoogleClient\Api\Data\CellInterface $cell */
+        foreach ($this->getCells() as $cell) {
+            if ($cell->getValue() == $value) {
+
+                return $cell;
+            }
+        }
+
+        throw new \Magento\Framework\Exception\NoSuchEntityException();
+    }
 }
